@@ -3,11 +3,20 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --nb-purple: #3a0058;
+  --nb-purple-2: #2a0040;
+  --nb-pink: #ff007a;
+  --nb-pink-2: #e6006f;
+  --nb-white: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-nb-purple: var(--nb-purple);
+  --color-nb-purple-2: var(--nb-purple-2);
+  --color-nb-pink: var(--nb-pink);
+  --color-nb-pink-2: var(--nb-pink-2);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
