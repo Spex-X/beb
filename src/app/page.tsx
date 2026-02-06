@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function Home() {
-  const checkoutUrl = "https://pay.cakto.com.br/eg5r5zq_750821";
+  const checkoutUrl = "https://pay.kiwify.com.br/5IK1HKA";
 
   return (
     <div className="min-h-screen bg-pink-200 text-gray-800">
