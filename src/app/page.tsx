@@ -1,5 +1,11 @@
 import Image from "next/image";
 
+declare global {
+  interface Window {
+    fbq: (command: string, eventName: string, parameters?: any) => void;
+  }
+}
+
 export default function Home() {
   const checkoutUrl = "https://pay.kiwify.com.br/5IK1HKA";
 
@@ -43,6 +49,16 @@ export default function Home() {
             <a
               href={checkoutUrl}
               className="inline-flex h-14 items-center justify-center rounded-full bg-pink-500 px-10 text-lg font-extrabold text-white shadow-lg transition hover:bg-pink-600 hover:shadow-xl"
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.fbq) {
+                  window.fbq('track', 'Lead', {
+                    content_name: 'Kit da Mamãe',
+                    content_category: 'Ebooks',
+                    value: 29.99,
+                    currency: 'BRL'
+                  });
+                }
+              }}
             >
               QUERO COMEÇAR AGORA
             </a>
@@ -216,6 +232,16 @@ export default function Home() {
               <a
                 href={checkoutUrl}
                 className="inline-flex h-12 items-center justify-center rounded-full bg-pink-500 px-8 text-sm font-extrabold text-white shadow-sm transition hover:bg-pink-600"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).fbq) {
+                    (window as any).fbq('track', 'Lead', {
+                      content_name: 'Kit da Mamãe',
+                      content_category: 'Ebooks',
+                      value: 29.99,
+                      currency: 'BRL'
+                    });
+                  }
+                }}
               >
                 QUERO RECEBER O KIT DA MAMÃE
               </a>
