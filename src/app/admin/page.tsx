@@ -255,7 +255,10 @@ export default function AdminPage() {
           </div>
           <button 
             onClick={() => {
-              document.getElementById('admin-console').innerHTML = '';
+              const consoleDiv = document.getElementById('admin-console');
+              if (consoleDiv) {
+                consoleDiv.innerHTML = '';
+              }
             }}
             className="mt-4 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded transition"
           >
