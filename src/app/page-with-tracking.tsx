@@ -1,10 +1,15 @@
 import Image from "next/image";
+import React from 'react';
 
 declare global {
   interface Window {
     fbq: (command: string, eventName: string, parameters?: any) => void;
     gtag: (command: string, action: string, parameters?: any) => void;
     dataLayer: any[];
+    scroll25?: boolean;
+    scroll50?: boolean;
+    scroll75?: boolean;
+    scroll100?: boolean;
   }
 }
 
