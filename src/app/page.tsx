@@ -3,6 +3,7 @@ import Image from "next/image";
 declare global {
   interface Window {
     fbq: (command: string, eventName: string, parameters?: any) => void;
+    gtag: (command: string, action: string, parameters?: any) => void;
   }
 }
 
@@ -54,8 +55,16 @@ export default function Home() {
                   window.fbq('track', 'Lead', {
                     content_name: 'Kit da Mamãe',
                     content_category: 'Ebooks',
-                    value: 29.99,
+                    value: 49.99,
                     currency: 'BRL'
+                  });
+                }
+                if (typeof window !== 'undefined' && window.gtag) {
+                  window.gtag('event', 'conversion', {
+                    send_to: 'G-9MX6X8R4X3',
+                    value: 49.99,
+                    currency: 'BRL',
+                    transaction_id: 'kit_mamae_cta_principal'
                   });
                 }
               }}
@@ -224,7 +233,7 @@ export default function Home() {
             <div className="mb-6">
               <h4 className="text-2xl font-bold text-gray-800 mb-2">Kit Completo da Mamãe</h4>
               <p className="text-lg text-gray-600 mb-4">Tudo que você precisa para a alimentação do seu bebê</p>
-              <div className="text-3xl font-bold text-pink-600 mb-2">R$ 29,99</div>
+              <div className="text-3xl font-bold text-pink-600 mb-2">R$ 49,99</div>
               <p className="text-sm text-gray-500"><span className="text-white">De R$ 97,90</span></p>
             </div>
 
@@ -237,8 +246,16 @@ export default function Home() {
                     (window as any).fbq('track', 'Lead', {
                       content_name: 'Kit da Mamãe',
                       content_category: 'Ebooks',
-                      value: 29.99,
+                      value: 49.99,
                       currency: 'BRL'
+                    });
+                  }
+                  if (typeof window !== 'undefined' && (window as any).gtag) {
+                    (window as any).gtag('event', 'conversion', {
+                      send_to: 'G-9MX6X8R4X3',
+                      value: 49.99,
+                      currency: 'BRL',
+                      transaction_id: 'kit_mamae_cta_secundario'
                     });
                   }
                 }}

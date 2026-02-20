@@ -28,6 +28,23 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <head>
+        {/* Google Analytics */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-9MX6X8R4X3"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-9MX6X8R4X3');
+            `,
+          }}
+        />
+        
+        {/* Facebook Pixel */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
