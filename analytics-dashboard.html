@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Analytics - Kit da Mamãe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .chart-container { height: 300px; }
+        .metric-card { transition: all 0.3s ease; }
+        .metric-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">📊 Painel de Analytics</h1>
+            <p class="text-gray-600">Monitoramento em tempo real da landing page Kit da Mamãe</p>
+        </header>
+
+        <!-- Métricas Principais -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Visitas Hoje</p>
+                        <p class="text-2xl font-bold text-blue-600" id="visitas-hoje">0</p>
+                    </div>
+                    <div class="text-3xl">👁️</div>
+                </div>
+            </div>
+
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Conversões</p>
+                        <p class="text-2xl font-bold text-green-600" id="conversoes">0</p>
+                    </div>
+                    <div class="text-3xl">🎯</div>
+                </div>
+            </div>
+
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Taxa de Conv.</p>
+                        <p class="text-2xl font-bold text-purple-600" id="taxa-conversao">0%</p>
+                    </div>
+                    <div class="text-3xl">📈</div>
+                </div>
+            </div>
+
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Receita Total</p>
+                        <p class="text-2xl font-bold text-pink-600" id="receita-total">R$ 0</p>
+                    </div>
+                    <div class="text-3xl">💰</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eventos em Tempo Real -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">📱 Dispositivos</h2>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Mobile</span>
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                        <span class="font-bold">70%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Desktop</span>
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 30%"></div>
+                        </div>
+                        <span class="font-bold">30%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">🌍 Fontes de Tráfego</h2>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Direto</span>
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                            <div class="bg-purple-500 h-2 rounded-full" style="width: 45%"></div>
+                        </div>
+                        <span class="font-bold">45%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Orgânico</span>
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 35%"></div>
+                        </div>
+                        <span class="font-bold">35%</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Social</span>
+                        <div class="w-32 bg-gray-200 rounded-full h-2">
+                            <div class="bg-pink-500 h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                        <span class="font-bold">20%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eventos Recentes -->
+        <section class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">⚡ Eventos Recentes</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="text-left py-2 px-4 text-gray-600">Horário</th>
+                            <th class="text-left py-2 px-4 text-gray-600">Evento</th>
+                            <th class="text-left py-2 px-4 text-gray-600">Detalhes</th>
+                            <th class="text-left py-2 px-4 text-gray-600">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="eventos-tabela">
+                        <!-- Eventos serão inseridos aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Debug Console -->
+        <section class="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">🔍 Console de Debug</h2>
+            <div class="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm h-32 overflow-y-auto" id="debug-console">
+                <!-- Logs serão inseridos aqui -->
+            </div>
+            <button onclick="clearConsole()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                Limpar Console
+            </button>
+        </section>
+    </div>
+
+    <script>
+        // Simulação de dados para demonstração
+        let eventos = [];
+        let visitas = 0;
+        let conversoes = 0;
+
+        // Função para adicionar eventos
+        function adicionarEvento(tipo, detalhes, valor = 0) {
+            const evento = {
+                horario: new Date().toLocaleTimeString('pt-BR'),
+                tipo: tipo,
+                detalhes: detalhes,
+                valor: valor
+            };
+            
+            eventos.unshift(evento);
+            if (eventos.length > 10) eventos.pop();
+            
+            atualizarTabela();
+            atualizarMetricas();
+            
+            // Adicionar ao console
+            const logDiv = document.getElementById('debug-console');
+            logDiv.innerHTML += `<div>[${evento.horario}] ${tipo}: ${detalhes} ${valor > 0 ? '- R$ ' + valor : ''}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        // Atualizar tabela de eventos
+        function atualizarTabela() {
+            const tbody = document.getElementById('eventos-tabela');
+            tbody.innerHTML = eventos.map(e => `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="py-2 px-4">${e.horario}</td>
+                    <td class="py-2 px-4">
+                        <span class="px-2 py-1 rounded text-xs font-bold ${
+                            e.tipo === 'Lead' ? 'bg-green-100 text-green-800' :
+                            e.tipo === 'PageView' ? 'bg-blue-100 text-blue-800' :
+                            e.tipo === 'Scroll' ? 'bg-purple-100 text-purple-800' :
+                            'bg-gray-100 text-gray-800'
+                        }">${e.tipo}</span>
+                    </td>
+                    <td class="py-2 px-4">${e.detalhes}</td>
+                    <td class="py-2 px-4 font-bold text-green-600">${e.valor > 0 ? 'R$ ' + e.valor : '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Atualizar métricas
+        function atualizarMetricas() {
+            visitas = eventos.filter(e => e.tipo === 'PageView').length;
+            conversoes = eventos.filter(e => e.tipo === 'Lead').length;
+            const taxa = visitas > 0 ? ((conversoes / visitas) * 100).toFixed(1) : 0;
+            const receita = conversoes * 49.99;
+
+            document.getElementById('visitas-hoje').textContent = visitas;
+            document.getElementById('conversoes').textContent = conversoes;
+            document.getElementById('taxa-conversao').textContent = taxa + '%';
+            document.getElementById('receita-total').textContent = 'R$ ' + receita.toFixed(2);
+        }
+
+        // Limpar console
+        function clearConsole() {
+            document.getElementById('debug-console').innerHTML = '';
+        }
+
+        // Simular eventos iniciais
+        setTimeout(() => {
+            adicionarEvento('PageView', 'Landing page carregada');
+            adicionarEvento('Scroll', 'Usuário rolou 25% da página');
+            adicionarEvento('Scroll', 'Usuário rolou 50% da página');
+            adicionarEvento('Click', 'Clique no benefício: Receitas simples');
+            adicionarEvento('Scroll', 'Usuário rolou 75% da página');
+            adicionarEvento('Lead', 'CTA Principal clicado', 49.99);
+        }, 1000);
+
+        // Simular eventos periódicos
+        setInterval(() => {
+            const eventosSimulados = [
+                { tipo: 'PageView', detalhes: 'Novo visitante' },
+                { tipo: 'Scroll', detalhes: 'Usuário rolou 25%' },
+                { tipo: 'Click', detalhes: 'Clique em benefício' },
+                { tipo: 'Lead', detalhes: 'CTA Secundário clicado', valor: 49.99 }
+            ];
+            
+            const eventoAleatorio = eventosSimulados[Math.floor(Math.random() * eventosSimulados.length)];
+            adicionarEvento(eventoAleatorio.tipo, eventoAleatorio.detalhes, eventoAleatorio.valor || 0);
+        }, 8000);
+    </script>
+</body>
+</html>

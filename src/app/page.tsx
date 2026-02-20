@@ -4,6 +4,13 @@ declare global {
   interface Window {
     fbq: (command: string, eventName: string, parameters?: any) => void;
     gtag: (command: string, action: string, parameters?: any) => void;
+    trackLead: (buttonText: string, position: string) => void;
+    trackClick: (element: string, action: string) => void;
+    trackScroll: (percentage: number) => void;
+    trackTime: (seconds: number) => void;
+    showTrackingData: () => void;
+    exportTrackingData: () => void;
+    clearTrackingData: () => void;
   }
 }
 
@@ -51,6 +58,7 @@ export default function Home() {
               href={checkoutUrl}
               className="inline-flex h-14 items-center justify-center rounded-full bg-pink-500 px-10 text-lg font-extrabold text-white shadow-lg transition hover:bg-pink-600 hover:shadow-xl"
               onClick={() => {
+                // Facebook Pixel
                 if (typeof window !== 'undefined' && window.fbq) {
                   window.fbq('track', 'Lead', {
                     content_name: 'Kit da Mamãe',
@@ -59,6 +67,8 @@ export default function Home() {
                     currency: 'BRL'
                   });
                 }
+                
+                // Google Analytics
                 if (typeof window !== 'undefined' && window.gtag) {
                   window.gtag('event', 'conversion', {
                     send_to: 'G-9MX6X8R4X3',
@@ -66,6 +76,11 @@ export default function Home() {
                     currency: 'BRL',
                     transaction_id: 'kit_mamae_cta_principal'
                   });
+                }
+                
+                // Simple Tracker
+                if (typeof window !== 'undefined' && window.trackLead) {
+                  window.trackLead('QUERO COMEÇAR AGORA', 'hero');
                 }
               }}
             >

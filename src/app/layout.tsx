@@ -69,6 +69,9 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=1120055003471811&ev=PageView&noscript=1"
           />
         </noscript>
+
+        {/* Simple Tracker */}
+        <script src="/tracker.js" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
